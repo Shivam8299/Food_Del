@@ -1,37 +1,85 @@
 import React, { useState } from "react";
 import { assets } from "../assets/frontend_assets/assets";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [activeMenu, setActiveMenu] = useState("home");
+  const [isOpen, setIsOpen] = useState(false); // Toggle for mobile menu
 
   const menuItems = ["home", "menu", "mobile-app", "contact"];
 
   return (
-    <div className="flex justify-between mb-8 mt-4 p-3 px-3">
+    <nav className="flex justify-between items-center mt-4  lg:px-6 py-4 mb-6">
+      {/* Logo */}
       <img className="h-7" src={assets.logo} alt="Logo" />
-      <ul className="flex justify-between items-center gap-10">
+
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex justify-between items-center md:gap-6 lg:gap-10">
+        {menuItems.map((item) => (
+          <Link
+            key={item}
+            className={`text-sm font-semibold cursor-pointer capitalize ${
+              activeMenu === item ? "text-red-500 border-b-2 border-red-500 pb-1" : "text-gray-600"
+            } transition-all`}
+            onClick={() => setActiveMenu(item)}
+          >
+            {item}
+          </Link>
+        ))}
+      </ul>
+
+      {/* Right Section (Cart, Search, Sign-up) */}
+      <div className="hidden md:flex justify-between items-center gap-6">
+        <img className="h-5 mt-1 cursor-pointer" src={assets.search_icon} alt="Search" />
+        <div className="relative">
+          <img className="h-5 mt-1 cursor-pointer" src={assets.basket_icon} alt="Basket" />
+          <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
+        </div>
+        <button className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition">
+          Sign up
+        </button>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button className="md:hidden text-2xl" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-2/3 shadow-lg flex flex-col gap-6 py-10 px-6 transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        } md:hidden`}
+      >
+        <button className="absolute top-5 right-5 text-2xl" onClick={() => setIsOpen(false)}>
+          <FaTimes />
+        </button>
+
         {menuItems.map((item) => (
           <li
             key={item}
-            className={`text-sm font-semibold cursor-pointer capitalize ${
-              activeMenu === item ? "text-red-500 border-b border-red-500 p-1" : "text-gray-600"
+            className={`text-lg font-semibold cursor-pointer capitalize ${
+              activeMenu === item ? "text-red-500 border-b-2 border-red-500 pb-1" : "text-gray-600"
             }`}
-            onClick={() => setActiveMenu(item)}
+            onClick={() => {
+              setActiveMenu(item);
+              setIsOpen(false);
+            }}
           >
-            {item }
+            {item}
           </li>
         ))}
-      </ul>
-      <div className="flex justify-between items-center gap-6">
-        <img className="h-5 mt-1" src={assets.search_icon} alt="Search" />
-        <div>
-          <img className="h-5 mt-1" src={assets.basket_icon} alt="Basket" />
-          <div className="h-2 w-2 rounded-full bg-red-500 relative bottom-7 left-4"></div>
-          <div></div>
+
+        <div className="flex gap-4 mt-6">
+          <img className="h-5 cursor-pointer" src={assets.search_icon} alt="Search" />
+          <div className="relative">
+            <img className="h-5 cursor-pointer" src={assets.basket_icon} alt="Basket" />
+            <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
+          </div>
         </div>
-        <button className="px-5 py-[6px] border rounded-full">Sign up</button>
       </div>
-    </div>
+    </nav>
   );
 }
 
