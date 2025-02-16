@@ -10,7 +10,7 @@ function Navbar() {
   const menuItems = ["home", "menu", "mobile-app", "contact"];
 
   return (
-    <nav className="flex justify-between items-center mt-4  lg:px-6 py-4 mb-6">
+    <nav className="flex justify-between items-center mt-4 lg:px-6 py-4 mb-6 bg-white md:mx-32 mx-1">
       {/* Logo */}
       <img className="h-7" src={assets.logo} alt="Logo" />
 
@@ -42,17 +42,17 @@ function Navbar() {
       </div>
 
       {/* Mobile Menu Button */}
-      <button className="md:hidden text-2xl" onClick={() => setIsOpen(!isOpen)}>
+      <button className="lg:hidden text-3xl" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </button>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-2/3 shadow-lg flex flex-col gap-6 py-10 px-6 transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-2/3 shadow-lg bg-white flex flex-col gap-6 py-10 px-6 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
-        <button className="absolute top-5 right-5 text-2xl" onClick={() => setIsOpen(false)}>
+        <button className="absolute top-5 right-5 text-3xl font-thin" onClick={() => setIsOpen(false)}>
           <FaTimes />
         </button>
 

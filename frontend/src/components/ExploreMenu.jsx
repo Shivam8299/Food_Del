@@ -18,7 +18,7 @@ function ExploreMenu({ category, setCategory }) {
         className="w-full overflow-x-auto"
         style={{ scrollbarWidth: "none" }}
       >
-        <div className="flex gap-8 w-max ">
+        <div className="flex gap-5 w-max ">
           {menu_list.map((item, index) => (
             <div
             onClick={() =>
@@ -28,11 +28,7 @@ function ExploreMenu({ category, setCategory }) {
               className="flex flex-col items-center cursor-pointer"
             >
               <img
-                className={
-                  category === item.menu_name
-                    ? "border-2 rounded-full p-[2px] border-red-400"
-                    : ""
-                }
+                className={`${category === item.menu_name ? "border-2 rounded-full p-[2px] border-red-400" : ""} h-28`}
                 src={item.menu_image}
                 alt=""
               />
@@ -43,7 +39,7 @@ function ExploreMenu({ category, setCategory }) {
           ))}
         </div>
       </div>
-      <div className="w-full h-[1.5px] rounded-full mb-2 bg-zinc-300 mt-12"></div>
+      <div className="w-full h-[1.5px] rounded-full mb-2 bg-zinc-300 mt-8"></div>
     </div>
   );
 }
