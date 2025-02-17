@@ -31,7 +31,7 @@ function FoodDisplay({ category }) {
       <h1 className="text-xl ml-1 sm:ml-2 md:ml-3 lg:ml-4 font-semibold mb-4">
         Top Dishes Near You
       </h1>
-      <div className="grid mx-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-4 mb-44">
+      <div className="grid mx-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-4 mb-28">
         {food_list
           .filter((item) => category === "All" || item.category === category)
           .map((item) => {
@@ -43,12 +43,12 @@ function FoodDisplay({ category }) {
                   {count === 0 ? (
                     <img
                       onClick={() => handleIncrement(item._id)}
-                      className="cursor-pointer relative bottom-13 md:bottom-10 left-75 md:left-45 w-10 h-10 md:w-8 md:h-8"
+                      className="cursor-pointer relative bottom-13 md:bottom-10 left-75 md:left-60 lg:left-45 w-10 h-10 md:w-8 md:h-8"
                       src={assets.add_icon_white}
                       alt="Add"
                     />
                   ) : (
-                    <div className="flex gap-1 relative bottom-11 left-65 md:bottom-10 md:left-35">
+                    <div className="flex gap-1 relative bottom-11 left-65 md:bottom-10 md:left-50 lg:left-35">
                       <img
                         className="w-7 h-7 cursor-pointer"
                         onClick={() => handleIncrement(item._id)}
