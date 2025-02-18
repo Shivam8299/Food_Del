@@ -5,50 +5,79 @@ import { Link } from "react-router-dom";
 import Login from "./Login";
 
 function Navbar() {
-  const [activeMenu, setActiveMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // Toggle for mobile menu
-  // const [login, setlogin] = useState('sign in')
-  const [showLogin, setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(false);
 
-  const menuItems = ["home", "menu", "mobile-app", "contact"];
+  // // Function to handle scrolling
+  // const scrollToSection = (id) => {
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth"});
+  //   }
+  //   setIsOpen(false); // Close mobile menu after clicking
+  // };
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+       // Get target position
+      const targetPosition = element.offsetTop;
+      // Current scroll position
+      const startPosition = window.scrollY; 
+      const distance = targetPosition - startPosition;
+      let startTime = null;
+      //time Duration
+      const duration = 1500; 
+  
+      function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1); // Ensures it stops at target
+  
+        window.scrollTo(0, startPosition + distance * easeInOutQuad(progress));
+  
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
+  
+      function easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      }
+  
+      requestAnimationFrame(animation);
+    }
+  
+    setIsOpen(false); // Close mobile menu after clicking
+  };
+  
   return (
-    <nav className="flex justify-between items-center mt-4 lg:px-6 py-4 mb-6 bg-white md:mx-32 mx-1">
+    <nav className="flex justify-between items-center mt-4 lg:px-6 py-4 mb-6 bg-white md:mx-24 mx-1">
       {/* Logo */}
-      <img className="h-7 ml-4 sm:ml-0" src={assets.logo} alt="Logo" />
+      <Link to="/"><img className="h-7 ml-4 sm:ml-0" src={assets.logo} alt="Logo" /></Link>
 
       {/* Desktop Menu */}
       <ul className="hidden lg:flex justify-between items-center md:gap-6 lg:gap-10">
-        {menuItems.map((item) => (
-          <Link
-            key={item}
-            className={`text-sm font-semibold cursor-pointer capitalize ${
-              activeMenu === item ? "text-red-500 border-b-2 border-red-500 pb-1" : "text-gray-600"
-            } transition-all`}
-            onClick={() => setActiveMenu(item)}
-          >
-            {item}
-          </Link>
-        ))}
+        <Link to="/" className="cursor-pointer hover:border-b  border-gray-600 hover:font-semibold">Home</Link>
+        <a href="#menu" onClick={() => scrollToSection("menu")} className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Menu</a>
+        <a href="#mobile-app" onClick={() => scrollToSection("mobile-app")} className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Mobile App</a>
+        <a href="#contact" onClick={() => scrollToSection("contact")} className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Contact</a>
       </ul>
 
       {/* Right Section (Cart, Search, Sign-up) */}
       <div className="hidden lg:flex justify-between items-center gap-6">
         <img className="h-5 mt-1 cursor-pointer" src={assets.search_icon} alt="Search" />
         <div className="relative">
-          <img className="h-5 mt-1 cursor-pointer" src={assets.basket_icon} alt="Basket" />
+          <Link to="/cart" ><img className="h-5 mt-1 cursor-pointer" src={assets.basket_icon} alt="Basket" /></Link>
           <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
         </div>
-        <button 
-          onClick={()=>setShowLogin(true)}
-        className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
-          sign in
+        <button onClick={() => setShowLogin(true)}
+          className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition cursor-pointer">
+          Sign in
         </button>
-        {showLogin && <Login setShowLogin={setShowLogin}/>}
+        {showLogin && <Login setShowLogin={setShowLogin} />}
       </div>
 
       {/* Mobile Menu Button */}
-      <button className="lg:hidden text-3xl pr-5 " onClick={() => setIsOpen(!isOpen)}>
+      <button className="lg:hidden text-3xl pr-5" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </button>
 
@@ -62,28 +91,10 @@ function Navbar() {
           <FaTimes />
         </button>
 
-        {menuItems.map((item) => (
-          <li
-            key={item}
-            className={`text-lg font-semibold cursor-pointer capitalize ${
-              activeMenu === item ? "text-red-500 border-b-2 border-red-500 pb-1" : "text-gray-600"
-            }`}
-            onClick={() => {
-              setActiveMenu(item);
-              setIsOpen(false);
-            }}
-          >
-            {item}
-          </li>
-        ))}
-
-        <div className="flex gap-4 mt-6">
-          <img className="h-5 cursor-pointer" src={assets.search_icon} alt="Search" />
-          <div className="relative">
-            <img className="h-5 cursor-pointer" src={assets.basket_icon} alt="Basket" />
-            <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
-          </div>
-        </div>
+        <a onClick={() => scrollToSection("home")} className="cursor-pointer text-lg font-semibold">Home</a>
+        <a onClick={() => scrollToSection("menu")} className="cursor-pointer text-lg font-semibold">Menu</a>
+        <a onClick={() => scrollToSection("mobile-app")} className="cursor-pointer text-lg font-semibold">Mobile App</a>
+        <a onClick={() => scrollToSection("contact")} className="cursor-pointer text-lg font-semibold">Contact</a>
       </div>
     </nav>
   );

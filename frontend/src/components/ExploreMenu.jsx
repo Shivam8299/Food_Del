@@ -3,9 +3,9 @@ import { menu_list } from "../assets/frontend_assets/assets";
 
 function ExploreMenu({ category, setCategory }) {
   return (
-    <div className="mt-8 w-full ">
+    <div id='menu' className="pt-8 w-full">
       <div className="ml-1 sm:ml-2 md:ml-3">
-      <h1 className="mb-6">Explore our menu</h1>
+      <h1 className="mb-6 text-2xl lg:text-3xl font-semibold">Explore our menu</h1>
       <p className="max-w-[600px] text-xs text-black mb-10">
         Choose from a diverse menu featuring a delectable array of dishes. Our
         mission is to satisfy your cravings and elevate your dining experience,

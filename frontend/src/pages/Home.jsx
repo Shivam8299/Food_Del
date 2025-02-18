@@ -6,7 +6,7 @@ import FoodDesplay from '../components/FoodDesplay'
 function Home() {
   const [category, setCategory] = useState("All")
   return (
-    <div className=' md:mx-16 lg:mx-32 mx-1'>
+    <div className=' md:mx-16 lg:mx-24 mx-1'>
         <Header/>
         <ExploreMenu category={category} setCategory={setCategory} />
         <FoodDesplay category={category}/>

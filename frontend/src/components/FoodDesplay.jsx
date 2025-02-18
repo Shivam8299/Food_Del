@@ -28,10 +28,10 @@ function FoodDisplay({ category }) {
 
   return (
     <div>
-      <h1 className="text-xl ml-1 sm:ml-2 md:ml-3 lg:ml-4 font-semibold mb-4">
+      <h1 className="text-2xl md:text-3xl mb-6 ml-2  font-semibold ">
         Top Dishes Near You
       </h1>
-      <div className="grid mx-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-4 mb-28">
+      <div className="grid mx-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-4 mb-10">
         {food_list
           .filter((item) => category === "All" || item.category === category)
           .map((item) => {
