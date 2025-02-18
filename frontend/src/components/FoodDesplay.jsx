@@ -3,7 +3,9 @@ import { StoreContext } from "../context/StoreContext";
 import { assets } from "../assets/frontend_assets/assets";
 
 function FoodDisplay({ category }) {
-  const [itemCounts, setItemCounts] = useState({});
+  const { cartItems, setCartItems, addToCart, removeFromCArt } =
+    useContext(StoreContext);
+
   const { food_list } = useContext(StoreContext);
 
   // Function to handle incrementing item count
@@ -12,18 +14,6 @@ function FoodDisplay({ category }) {
       ...prevCounts,
       [id]: (prevCounts[id] || 0) + 1,
     }));
-  };
-
-  // Function to handle decrementing item count
-  const handleDecrement = (id) => {
-    setItemCounts((prevCounts) => {
-      const updatedCount = (prevCounts[id] || 0) - 1;
-      if (updatedCount <= 0) {
-        const { [id]: _, ...rest } = prevCounts; // Remove the item if count is 0
-        return rest;
-      }
-      return { ...prevCounts, [id]: updatedCount };
-    });
   };
 
   return (
@@ -35,30 +25,36 @@ function FoodDisplay({ category }) {
         {food_list
           .filter((item) => category === "All" || item.category === category)
           .map((item) => {
-            const count = itemCounts[item._id] || 0;
             return (
-              <div className="shadow-lg flex flex-col mx-1 justify-center" key={item._id}>
-                <img className="rounded-t-xl" src={item.image} alt={item.name} />
-                <div>
-                  {count === 0 ? (
+              <div
+                className="shadow-lg flex flex-col mx-1 justify-center"
+                key={item._id}
+              >
+                <img
+                  className="rounded-t-lg mb-6"
+                  src={item.image}
+                  alt={item.name}
+                />
+                <div className="relative">
+                  {!cartItems[item._id] ? (
                     <img
-                      onClick={() => handleIncrement(item._id)}
-                      className="cursor-pointer relative bottom-13 md:bottom-10 left-75 md:left-60 lg:left-45 w-10 h-10 md:w-8 md:h-8"
+                      onClick={() => addToCart(item._id)}
+                      className="cursor-pointer absolute bottom-9 left-[320px]  md:left-58 xl:left-48 w-10 h-10 md:w-8 md:h-8"
                       src={assets.add_icon_white}
                       alt="Add"
                     />
                   ) : (
-                    <div className="flex gap-1 relative bottom-11 left-65 md:bottom-10 md:left-50 lg:left-35">
+                    <div className="flex gap-1 absolute bottom-9  left-[280px] sm:left-52 xl:left-38 bg-white py-1 px-2 rounded-full">
                       <img
-                        className="w-7 h-7 cursor-pointer"
-                        onClick={() => handleIncrement(item._id)}
+                        className="w-6 h-6 cursor-pointer"
+                        onClick={() => addToCart(item._id)}
                         src={assets.add_icon_green}
                         alt="Increase"
                       />
-                      <p className="text-white">{count}</p>
+                      <p className="text-gray-800 ">{cartItems[item._id]}</p>
                       <img
-                        className="w-7 h-7 cursor-pointer"
-                        onClick={() => handleDecrement(item._id)}
+                        className="w-6 h-6 cursor-pointer"
+                        onClick={() => removeFromCArt(item._id)}
                         src={assets.remove_icon_red}
                         alt="Decrease"
                       />
@@ -67,13 +63,21 @@ function FoodDisplay({ category }) {
                 </div>
                 <div className="text-sm mx-2">
                   <div className="flex justify-between">
-                    <p className="text-md font-semibold text-black mt-1">{item.name}</p>
+                    <p className="text-md font-semibold text-black mt-1">
+                      {item.name}
+                    </p>
                     <div className="mt-1">
-                      <img className="w-18 mt-1" src={assets.rating_starts} alt="Rating" />
+                      <img
+                        className="w-18 mt-1"
+                        src={assets.rating_starts}
+                        alt="Rating"
+                      />
                     </div>
                   </div>
-                  <p className="text-xs text-gray-600 mt-2">{item.description}</p>
-                  <p className="text-md text-amber-700 font-semibold mt-2 mb-6">
+                  <p className="text-xs text-gray-600 mt-2">
+                    {item.description}
+                  </p>
+                  <p className="text-md text-amber-700 font-semibold mt-2 mb-8">
                     ${item.price}
                   </p>
                 </div>

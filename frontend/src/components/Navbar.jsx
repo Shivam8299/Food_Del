@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import { StoreContext } from "../context/StoreContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Toggle for mobile menu
   const [showLogin, setShowLogin] = useState(false);
+  const{cartItems} = useContext(StoreContext)
+
+  console.log("13", cartItems)
 
   // // Function to handle scrolling
   // const scrollToSection = (id) => {
@@ -27,7 +31,8 @@ function Navbar() {
       const distance = targetPosition - startPosition;
       let startTime = null;
       //time Duration
-      const duration = 1500; 
+      let duration = 1500; 
+      (id === 'menu')? duration =500 : duration=2000
   
       function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
@@ -50,7 +55,7 @@ function Navbar() {
   };
   
   return (
-    <nav className="flex justify-between items-center mt-4 lg:px-6 py-4 mb-6 bg-white md:mx-24 mx-1">
+    <nav className="flex justify-between items-center mt-4 lg:px-6 py-4 mb-6 bg-white md:mx-24 mx-1 ">
       {/* Logo */}
       <Link to="/"><img className="h-7 ml-4 sm:ml-0" src={assets.logo} alt="Logo" /></Link>
 

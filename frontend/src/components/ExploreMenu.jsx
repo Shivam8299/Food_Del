@@ -16,7 +16,7 @@ function ExploreMenu({ category, setCategory }) {
       {/* Scrollable Container */}
       <div
         className="w-full overflow-x-auto"
-        style={{ scrollbarWidth: "none" }}
+        style={{ scrollbarWidth: "none", whiteSpace:'nowrap' }}
       >
         <div className="flex gap-5 w-max ">
           {menu_list.map((item, index) => (
@@ -28,7 +28,7 @@ function ExploreMenu({ category, setCategory }) {
               className="flex flex-col items-center cursor-pointer"
             >
               <img
-                className={`${category === item.menu_name ? "border-2 rounded-full p-[2px] border-red-400" : ""} h-28`}
+                className={`${category === item.menu_name ? "border-2 rounded-full p-[2px] border-red-400" : ""} h-32 lg:h-36`}
                 src={item.menu_image}
                 alt=""
               />

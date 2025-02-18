@@ -9,11 +9,11 @@ import AppDownload from "./components/AppDownload";
 
 function App() {
   return (
-    <div className="mt-4 bg-gray-50">
+    <div className="mt-4 bg-gray-50 ">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/order" element={<PlaceOrder />} />
       </Routes>
       <AppDownload />
