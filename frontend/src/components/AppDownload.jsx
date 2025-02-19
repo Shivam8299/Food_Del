@@ -3,8 +3,8 @@ import { assets } from "../assets/frontend_assets/assets";
 
 function AppDownload() {
   return (
-    <div id='mobile-app' className="py-10 mb-10">
-      <h1 className=" ml-6 sm:ml-24 md:ml-44 lg:ml-64 xl:ml-96 text-2xl sm:text-3xl md:4xl font-semibold  mb-8" >For Better Experience Download <br />
+    <div id='mobile-app' className="py-24 mb-10 ">
+      <h1 className=" ml-6 sm:ml-24 md:ml-44 lg:ml-64 xl:ml-96 text-2xl lg:text-3xl sm:text-3xl md:4xl font-semibold  mb-8" >For Better Experience Download <br />
       <span className="ml-28 md:ml-36">Tomato App</span></h1>
       <div className="flex justify-center gap-4">
         <img className="h-14 hover:shadow-xl cursor-pointer  "  src={assets.play_store} alt="" />

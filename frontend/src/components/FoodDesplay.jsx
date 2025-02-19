@@ -3,8 +3,8 @@ import { StoreContext } from "../context/StoreContext";
 import { assets } from "../assets/frontend_assets/assets";
 
 function FoodDisplay({ category }) {
-  const { cartItems, setCartItems, addToCart, removeFromCArt } =
-    useContext(StoreContext);
+  const { cartItems, setCartItems, addToCart, removeFromCart } = useContext(StoreContext);
+ 
 
   const { food_list } = useContext(StoreContext);
 
@@ -39,12 +39,12 @@ function FoodDisplay({ category }) {
                   {!cartItems[item._id] ? (
                     <img
                       onClick={() => addToCart(item._id)}
-                      className="cursor-pointer absolute bottom-9 left-[320px]  md:left-58 xl:left-48 w-10 h-10 md:w-8 md:h-8"
+                      className="cursor-pointer absolute bottom-9 left-[320px]  md:left-58 lg:left-52 xl:left-48 w-10 h-10 md:w-8 md:h-8"
                       src={assets.add_icon_white}
                       alt="Add"
                     />
                   ) : (
-                    <div className="flex gap-1 absolute bottom-9  left-[280px] sm:left-52 xl:left-38 bg-white py-1 px-2 rounded-full">
+                    <div className="flex gap-1 absolute bottom-9  left-[280px] sm:left-52 lg:left-40 xl:left-38 bg-white py-1 px-2 rounded-full">
                       <img
                         className="w-6 h-6 cursor-pointer"
                         onClick={() => addToCart(item._id)}
@@ -54,7 +54,7 @@ function FoodDisplay({ category }) {
                       <p className="text-gray-800 ">{cartItems[item._id]}</p>
                       <img
                         className="w-6 h-6 cursor-pointer"
-                        onClick={() => removeFromCArt(item._id)}
+                        onClick={() => removeFromCart(item._id)}
                         src={assets.remove_icon_red}
                         alt="Decrease"
                       />

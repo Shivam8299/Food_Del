@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { assets } from "../assets/frontend_assets/assets";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   // console.log(itemCounts)
-  const { cartItems, food_list, removeFromCart } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart, totalCartAmmount } = useContext(StoreContext);
+  const navigate = useNavigate()
   console.log(cartItems._id);
   return (
-    <div className=" mx-4 md:mx-16 lg:mx-32 mt-12">
-      <div className="flex border-b border-gray-400 pb-2 justify-between">
+    <div className=" mx-4 md:mx-16 lg:mx-28 mt-12 bg-gray-50">
+      <div className="flex border-b border-gray-400 pb-2 justify-between ">
         <p className="font-semibold text-md">item</p>
         <p className="font-semibold text-md">Title</p>
         <p className="font-semibold text-md">Price</p>
@@ -43,22 +45,24 @@ function Cart() {
  
       <div className="mt-16 mb-8 md:flex justify-between  ">
         <div className="w-full md:w-72 lg:w-96 px-2">
-          <p className=" p-1 font-bold text-xl  mb-6">Cart Total</p>
+          <p className=" p-1 font-bold text-xl  mb-6  text-center md:text-start">Cart Total</p>
           <div className="flex justify-between border-b-[1.5px] border-gray-300">
             <p className="text-sm p-[6px]">Subtotal</p>
-            <p className="text-sm mr-1 text-gray-800">0</p>
+            <p className="text-sm mr-1 text-gray-800">{totalCartAmmount()}</p>
           </div>
           <div className=" flex justify-between border-b-[1.5px] border-gray-300 p-[6px]">
             <p className="text-sm ">Delivery</p>
-            <p className="text-sm text-gray-800 ">2</p>
+            <p className="text-sm text-gray-800 ">$ 2</p>
           </div>
           <div className=" flex justify-between p-[6px]">
             <p className="p-1 mb-2 text-sm font-semibold text-gray-800 ">
               Total
             </p>
-            <p className="text-gray-800">0</p>
+            <p className="text-gray-800">${totalCartAmmount()+2} </p>
           </div>
-          <button className="px-6 py-2 rounded-sm ml-20 sm:ml-24 md:ml-4 bg-orange-600 text-xs text-white">
+          <button
+          onClick={()=>navigate('/order')}
+          className="px-6 py-2 rounded-sm ml-20 sm:ml-24 md:ml-4 bg-orange-600 hover:bg-orange-700 cursor-pointer text-xs text-white">
             PROCEED TO CHECKOUT
           </button>
         </div>
