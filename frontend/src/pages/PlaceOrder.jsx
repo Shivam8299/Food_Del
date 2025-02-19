@@ -4,19 +4,19 @@ import { StoreContext } from "../context/StoreContext";
 function PlaceOrder() {
   const { totalCartAmmount } = useContext(StoreContext);
   return (
-    <div className="md:flex justify-between mt-6  mx-1 sm:mx-2 md:mx-16 lg:mx-24 xl:mx-28">
+    <div className="flex flex-col md:flex-row justify-between mt-6  mx-4 sm:mx-2 md:mx-16 lg:mx-24 xl:mx-28">
       <form className="">
         <p className="text-xl sm:2xl md:text-3xl text-center md:text-start ml-1 font-bold mb-10 text-black">
           Add Delivery Address
         </p>
-        <div className=" flex gap-2 mb-4">
+        <div className="flex gap-2 mb-4  ">
           <input
-            className="outline-none border rounded-xs px-2 text-sm py-1"
+            className=" w-full outline-none border rounded-xs px-2 text-sm py-1"
             type="text"
             placeholder="first name"
           />
           <input
-            className="outline-none border rounded-xs px-2 text-sm py-1"
+            className=" w-full outline-none border rounded-xs px-2 text-sm py-1"
             type="text"
             placeholder="last name"
           />
@@ -33,25 +33,26 @@ function PlaceOrder() {
         />
         <div className=" flex gap-2 mb-4">
           <input
-            className="outline-none border rounded-xs px-2 text-sm py-1"
+            className=" w-full outline-none border rounded-xs px-2 text-sm py-1"
             type="text"
             placeholder="City"
           />
           <input
-            className="outline-none border rounded-xs px-2 text-sm py-1"
+            className=" w-full outline-none border rounded-xs px-2 text-sm py-1"
             type="text"
             placeholder="state"
           />
         </div>
         <div className=" flex gap-2 mb-4">
           <input
-            className="outline-none border rounded-xs px-2 text-sm py-1"
+            className=" w-full outline-none border rounded-xs px-2 text-sm py-1"
             type="text"
             placeholder="Zip Code "
           />
           <input
-            className="outline-none border rounded-xs px-2 text-sm py-1"
+            className=" w-full outline-none border rounded-xs px-2 text-sm py-1"
             type="text"
+            placeholder="Countery"
           />
         </div>
         <input
@@ -64,7 +65,7 @@ function PlaceOrder() {
         <p className=" p-1 font-bold text-xl md:text-2xl  mb-6  text-center md:text-start">Cart Total</p>
         <div className="flex justify-between border-b-[1.5px] border-gray-300">
           <p className="text-sm p-[6px]">Subtotal</p>
-          <p className="text-sm mr-1 text-gray-800">{totalCartAmmount()}</p>
+          <p className="text-sm mr-1 text-gray-800">${totalCartAmmount()}</p>
         </div>
         <div className=" flex justify-between border-b-[1.5px] border-gray-300 p-[6px]">
           <p className="text-sm ">Delivery</p>
@@ -75,8 +76,7 @@ function PlaceOrder() {
           <p className="text-gray-800">${totalCartAmmount() + 2} </p>
         </div>
         <button
-          onClick={() => navigate("/order")}
-          className="px-6 py-2 rounded-xs mt-6 ml-20 sm:ml-24 md:ml-4 bg-orange-600 hover:bg-orange-700 cursor-pointer text-xs text-white"
+          className="w-full lg:ml-6 xl:ml-10  md:w-64 lg:w-72 px-6 py-2 rounded mt-6 bg-orange-600 hover:bg-orange-700 cursor-pointer text-white text-sm"
         >
           PROCEED TO PAYMENT
         </button>

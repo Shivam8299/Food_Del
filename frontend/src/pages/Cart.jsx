@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Cart() {
   // console.log(itemCounts)
   const { cartItems, food_list, removeFromCart, totalCartAmmount } = useContext(StoreContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   console.log(cartItems._id);
   return (
     <div className=" mx-4 md:mx-16 lg:mx-28 mt-12 bg-gray-50">
@@ -42,10 +42,12 @@ function Cart() {
           );
         }
       })}
- 
-      <div className="mt-16 mb-8 md:flex justify-between  ">
+
+      <div className="mt-16 mb-8 flex flex-col  md:flex-row  justify-between">
         <div className="w-full md:w-72 lg:w-96 px-2">
-          <p className=" p-1 font-bold text-xl  mb-6  text-center md:text-start">Cart Total</p>
+          <p className=" p-1 font-bold text-xl  mb-6  text-center md:text-start">
+            Cart Total
+          </p>
           <div className="flex justify-between border-b-[1.5px] border-gray-300">
             <p className="text-sm p-[6px]">Subtotal</p>
             <p className="text-sm mr-1 text-gray-800">{totalCartAmmount()}</p>
@@ -58,20 +60,29 @@ function Cart() {
             <p className="p-1 mb-2 text-sm font-semibold text-gray-800 ">
               Total
             </p>
-            <p className="text-gray-800">${totalCartAmmount()+2} </p>
+            <p className="text-gray-800">${totalCartAmmount() + 2} </p>
           </div>
           <button
-          onClick={()=>navigate('/order')}
-          className="px-6 py-2 rounded-sm ml-20 sm:ml-24 md:ml-4 bg-orange-600 hover:bg-orange-700 cursor-pointer text-xs text-white">
+            onClick={() => navigate("/order")}
+            className=" w-full lg:ml-6   md:w-64 lg:w-72 px-6 py-2 text-center rounded mt-10 bg-orange-600 hover:bg-orange-700 cursor-pointer text-white text-sm"
+          >
             PROCEED TO CHECKOUT
           </button>
         </div>
-        <div className="mt-10">
-          <p className="text-sm text-gray-700 ">If you have a promo code, Enter it here</p>
-            <form  className="flex mt-4 ">
-            <input className=" w-48 lg:w-64  px-4 text-sm outline-none rounded bg-gray-300" type="text" placeholder="promo code" />
-            <button className="px-8 py-2 bg-black text-white text-xs rounded">Sumbit</button>
-            </form>
+        <div className="mt-16">
+          <p className="text-md text-center font-semibold text-gray-700 ">
+            If you have a promo code, Enter it here
+          </p>
+          <form className="flex mt-8 ">
+            <input
+              className=" w-full md:w-44 lg:w-60 xl:w-72  px-4 text-sm outline-none rounded bg-gray-300"
+              type="text"
+              placeholder="promo code"
+            />
+            <button className=" w-48 md:w-36 px-8 py-2 bg-black text-white text-xs rounded">
+              Sumbit
+            </button>
+          </form>
         </div>
       </div>
     </div>
