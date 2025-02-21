@@ -9,7 +9,7 @@ function Sidebar() {
         <NavLink
           to="/add"
           className={({ isActive }) =>
-            `w-44 p-1 flex gap-2 mb-4 border ${isActive ? "bg-red-300" : ""}`
+            `w-44 p-1 flex gap-2 mb-4 border ${isActive ? "bg-red-100" : ""}`
           }
         >
           <img className="h-5" src={assets.add_icon} alt="" />
@@ -19,7 +19,7 @@ function Sidebar() {
         <NavLink
           to="/list"
           className={({ isActive }) =>
-            `w-44 p-1 flex gap-2 mb-4 border ${isActive ? "bg-red-300" : ""}`
+            `w-44 p-1 flex gap-2 mb-4 border ${isActive ? "bg-red-100" : ""}`
           }
         >
           <img className="h-5" src={assets.order_icon} alt="" />
@@ -29,7 +29,7 @@ function Sidebar() {
         <NavLink
           to="/order"
           className={({ isActive }) =>
-            `w-44 p-1 flex gap-2 mb-4 border ${isActive ? "bg-red-300" : ""}`
+            `w-44 p-1 flex gap-2 mb-4 border ${isActive ? "bg-red-100" : ""}`
           }
         >
           <img className="h-5" src={assets.order_icon} alt="" />
