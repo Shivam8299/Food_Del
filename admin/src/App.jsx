@@ -9,6 +9,7 @@ import Order from './pages/Order'
 import List from './pages/List'
 
 function App() {
+  const backendUrl = "http://localhost:3000";
   return (
     <div>
       <ToastContainer position="top-center" autoClose={3000} />
@@ -18,9 +19,9 @@ function App() {
         <Sidebar/>
         <div className="flex-grow p-4">
         <Routes>
-          <Route path="/add" element={<Add/>} />
-          <Route path="/list" element={<List/>} />
-          <Route path="/order" element={<Order/>} />
+          <Route path="/add" element={<Add backendUrl={backendUrl}/>} />
+          <Route path="/list" element={<List backendUrl={backendUrl}/>} />
+          <Route path="/order" element={<Order backendUrl={backendUrl}/>} />
         </Routes>
         </div>
       </div>
