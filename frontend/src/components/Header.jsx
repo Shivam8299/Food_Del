@@ -3,7 +3,7 @@ import { assets } from "../assets/frontend_assets/assets";
 
 function Header() {
   return (
-    <div className="px-4 ">
+    <div className="px-4">
       <div
         className="bg-cover bg-center h-[450px] rounded-xl w-full flex items-center"
         style={{ backgroundImage: `url(${assets.header_img})` }}

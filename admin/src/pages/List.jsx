@@ -41,11 +41,12 @@ function List({backendUrl}) {
   useEffect(() => {
     fetchList();
   }, []);
+  
   // console.log(list.map(data => data._id))
   return (
     <div className="mt-16 md:mt-20 py-4 px-1 md:px-8">
       <h1 className=" text-lg text-center md:text-start md:text-xl text-gray-700 font-semibold mb-4">
-        Add food Items
+      food Items
       </h1>
       <div className="flex justify-between rounded-xs border border-b-[1.5px] border-b-gray-700 bg-gray-100 px-2 md:px-6 py-4 text-sm">
         <b className="text-gray-700">Image</b>

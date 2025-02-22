@@ -6,7 +6,7 @@ function FoodDisplay({ category }) {
   const { cartItems, setCartItems, addToCart, removeFromCart } = useContext(StoreContext);
  
 
-  const { food_list } = useContext(StoreContext);
+  const { food_list,backendUrl} = useContext(StoreContext);
 
   // Function to handle incrementing item count
   const handleIncrement = (id) => {
@@ -18,7 +18,7 @@ function FoodDisplay({ category }) {
 
   return (
     <div>
-      <h1 className="text-2xl md:text-3xl mb-6 ml-2  font-semibold ">
+      <h1 className="text-2xl md:text-3xl mb-6 text-center md:text-start md:ml-2 mt-6 md:mt-4 font-semibold ">
         Top Dishes Near You
       </h1>
       <div className="grid mx-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 gap-4 mb-10">
@@ -32,7 +32,7 @@ function FoodDisplay({ category }) {
               >
                 <img
                   className="rounded-t-lg mb-6"
-                  src={item.image}
+                  src={backendUrl+"/images/"+item.image}
                   alt={item.name}
                 />
                 <div className="relative">

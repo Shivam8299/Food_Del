@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Cart() {
   // console.log(itemCounts)
-  const { cartItems, food_list, removeFromCart, totalCartAmmount } = useContext(StoreContext);
+  const { cartItems, backendUrl, food_list, removeFromCart, totalCartAmmount } = useContext(StoreContext);
   const navigate = useNavigate();
   console.log(cartItems._id);
   return (
@@ -25,8 +25,8 @@ function Cart() {
               key={index}
               className="flex justify-between border-b border-gray-400 items-center py-2 mt-4 mb-8"
             >
-              <img className="h-10 " src={item.image} alt="" />
-              <p className="text-sm text-gray-700 ">{item.name}</p>
+              <img className="h-10 " src={backendUrl+"/images/"+item.image} alt="" />
+              <p className="text-sm  text-gray-700 ">{item.name}</p>
               <p className="text-gray-700">${item.price}</p>
               <p className="text-gray-700">{cartItems[item._id]}</p>
               <p className="text-gray-700">
@@ -34,7 +34,7 @@ function Cart() {
               </p>
               <img
                 onClick={() => removeFromCart(item._id)}
-                className="h-4 mt-1 cursor-pointer"
+                className="h-4 mt-1 lg:pr-6 cursor-pointer"
                 src={assets.cross_icon}
                 alt=""
               />

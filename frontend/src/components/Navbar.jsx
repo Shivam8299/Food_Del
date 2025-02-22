@@ -1,14 +1,15 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { StoreContext } from "../context/StoreContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const { totalCartAmmount } = useContext(StoreContext);
+  const { totalCartAmmount, token, setToken } = useContext(StoreContext);
+  const navigate = useNavigate()
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -39,6 +40,13 @@ function Navbar() {
     setIsOpen(false); // Close mobile menu after clicking
   };
 
+  const logout = ()=>{
+      localStorage.removeItem("token")
+      setToken('')
+      navigate('/')
+
+  }
+
   return (
     <>
       {/* Fixed Navbar */}
@@ -50,33 +58,128 @@ function Navbar() {
 
         {/* Right Side (Cart, Search, Sign-in) - Hidden in Mobile */}
         <div className="hidden lg:flex items-center space-x-6">
-          <img className="h-5 cursor-pointer" src={assets.search_icon} alt="Search" />
+          <img
+            className="h-5 cursor-pointer"
+            src={assets.search_icon}
+            alt="Search"
+          />
           <div className="relative">
             <Link to="/cart">
-              <img className="h-5 cursor-pointer" src={assets.basket_icon} alt="Basket" />
+              <img
+                className="h-5 cursor-pointer"
+                src={assets.basket_icon}
+                alt="Basket"
+              />
             </Link>
             {totalCartAmmount() !== 0 && (
               <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
             )}
           </div>
-          <button onClick={() => setShowLogin(true)}
-            className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition">
-            Sign in
-          </button>
+          {!token ? (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition"
+            >
+              Sign in
+            </button>
+          ) : (
+            <div className="relative group">
+              <img
+                className={`h-6 w-6 p-1 cursor-pointer border rounded-full  `}
+                src={assets.profile_icon}
+                alt=""
+              />
+
+            <div className=" w-32 border border-gray-400 rounded-md p-4  absolute bg-white  shadow-lg group-hover:visible  invisible">
+                <div className="flex gap-1  border-b pb-1 mb-1">
+                  <img
+                    className="h-5  cursor-pointer hover:text-orange-600"
+                    src={assets.bag_icon}
+                    alt=""
+                  />
+                  <p className=" text-gray-700 hover:text-orange-600 cursor-pointer ">
+                    Order
+                  </p>
+                </div>
+                <div className="flex gap-1 mb-2">
+                  <img
+                    onClick={logout}
+                    className="h-5 w-6 cursor-pointer hover:text-orange-600"
+                    src={assets.logout_icon}
+                    alt=""
+                  />
+                  <p onClick={logout} className=" text-gray-700 hover:text-orange-600 cursor-pointer ">
+                    Log Out
+                  </p>
+                </div>
+              </div>
+             
+            </div>
+          )}
           {showLogin && <Login setShowLogin={setShowLogin} />}
         </div>
 
         {/* Mobile View: Cart & Search Icons next to Menu Button */}
         <div className="lg:hidden flex items-center space-x-4">
-          <img className="h-5 cursor-pointer" src={assets.search_icon} alt="Search" />
+          <img
+            className="h-5 cursor-pointer"
+            src={assets.search_icon}
+            alt="Search"
+          />
           <div className="relative">
             <Link to="/cart">
-              <img className="h-5 cursor-pointer" src={assets.basket_icon} alt="Basket" />
+              <img
+                className="h-5 cursor-pointer"
+                src={assets.basket_icon}
+                alt="Basket"
+              />
             </Link>
             {totalCartAmmount() !== 0 && (
               <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
             )}
           </div>
+          {!token ? (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition"
+            >
+              Sign in
+            </button>
+          ) : (
+            <div className="relative group">
+              <img
+                className={`h-6 w-6 p-1 cursor-pointer border rounded-full  `}
+                src={assets.profile_icon}
+                alt=""
+              />
+
+            <div className=" w-24 h-24 py-3 p-1 absolute bg-white  shadow-lg group-hover:visible  invisible">
+                <div className="flex gap-1 mb-2">
+                  <img
+                    className="h-5 cursor-pointer hover:text-orange-600"
+                    src={assets.bag_icon}
+                    alt=""
+                  />
+                  <p className=" text-orange-400 hover:text-orange-600 cursor-pointer ">
+                    Order
+                  </p>
+                </div>
+                <div className="flex gap-1 mb-2">
+                  <img
+                    onClick={logout}
+                    className="h-5 w-6 cursor-pointer hover:text-orange-600"
+                    src={assets.logout_icon}
+                    alt=""
+                  />
+                  <p onClick={logout} className=" text-orange-400 hover:text-orange-600 cursor-pointer ">
+                    Log Out
+                  </p>
+                </div>
+              </div>
+             
+            </div>
+          )}
+          {showLogin && <Login setShowLogin={setShowLogin} />}
 
           {/* Mobile Menu Button */}
           <button className="text-3xl" onClick={() => setIsOpen(!isOpen)}>
@@ -86,10 +189,30 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-          <Link to="/" className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Home</Link>
-          <a onClick={() => scrollToSection("menu")} className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Menu</a>
-          <a onClick={() => scrollToSection("mobile-app")} className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Mobile App</a>
-          <a onClick={() => scrollToSection("contact")} className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold">Contact</a>
+          <Link
+            to="/"
+            className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold"
+          >
+            Home
+          </Link>
+          <a
+            onClick={() => scrollToSection("menu")}
+            className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold"
+          >
+            Menu
+          </a>
+          <a
+            onClick={() => scrollToSection("mobile-app")}
+            className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold"
+          >
+            Mobile App
+          </a>
+          <a
+            onClick={() => scrollToSection("contact")}
+            className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold"
+          >
+            Contact
+          </a>
         </ul>
 
         {/* Mobile Menu */}
@@ -98,14 +221,38 @@ function Navbar() {
             isOpen ? "translate-x-0" : "translate-x-full"
           } lg:hidden`}
         >
-          <button className="absolute top-5 right-6 text-3xl" onClick={() => setIsOpen(false)}>
+          <button
+            className="absolute top-5 right-6 text-3xl"
+            onClick={() => setIsOpen(false)}
+          >
             <FaTimes />
           </button>
 
-          <a onClick={() => scrollToSection("home")} className="cursor-pointer text-lg font-semibold">Home</a>
-          <a onClick={() => scrollToSection("menu")} className="cursor-pointer text-lg font-semibold">Menu</a>
-          <a onClick={() => scrollToSection("mobile-app")} className="cursor-pointer text-lg font-semibold">Mobile App</a>
-          <a onClick={() => scrollToSection("contact")} className="cursor-pointer text-lg font-semibold">Contact</a>
+          <Link
+            to="/"
+            onClick={() => scrollToSection("home")}
+            className="cursor-pointer text-lg font-semibold"
+          >
+            Home
+          </Link>
+          <a
+            onClick={() => scrollToSection("menu")}
+            className="cursor-pointer text-lg font-semibold"
+          >
+            Menu
+          </a>
+          <a
+            onClick={() => scrollToSection("mobile-app")}
+            className="cursor-pointer text-lg font-semibold"
+          >
+            Mobile App
+          </a>
+          <a
+            onClick={() => scrollToSection("contact")}
+            className="cursor-pointer text-lg font-semibold"
+          >
+            Contact
+          </a>
         </div>
       </nav>
 
@@ -116,4 +263,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
