@@ -28,6 +28,8 @@ const addToCart = async (req,res)=>{
 
 
 
+
+
 //remove to cart
 const removeFromCart = async (req,res) =>{
      try {
