@@ -27,11 +27,11 @@ function FoodDisplay({ category }) {
           .map((item) => {
             return (
               <div
-                className="shadow-lg flex flex-col mx-1 justify-center"
+                className="shadow-lg flex flex-col mx-1  justify-center"
                 key={item._id}
               >
                 <img
-                  className="rounded-t-lg mb-6"
+                  className="rounded-t-lg  mb-6"
                   src={backendUrl+"/images/"+item.image}
                   alt={item.name}
                 />
