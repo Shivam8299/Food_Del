@@ -7,7 +7,7 @@ function Cart() {
   // console.log(itemCounts)
   const { cartItems, backendUrl, food_list, removeFromCart, totalCartAmmount } = useContext(StoreContext);
   const navigate = useNavigate();
-  console.log(cartItems._id);
+  // console.log(cartItems);
   return (
     <div className=" mx-4 md:mx-16 lg:mx-28 mt-12 bg-gray-50">
       <div className="flex border-b border-gray-400 pb-2 justify-between ">

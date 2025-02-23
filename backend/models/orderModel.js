@@ -9,7 +9,7 @@ const orderSchema = new  mongoose.Schema({
         type:Array,
         required:true
     },
-    ammount:{
+    amount:{
         type:Number,
         required:true
     },
@@ -21,13 +21,9 @@ const orderSchema = new  mongoose.Schema({
         type:String,
         default:"Food Processing"
     },
-    userId:{
-        type:String,
-        required:true
-    },
     date:{
         type:Date,
-        default:Date.now()
+        default:Date.now
     },
     payment:{
         type:Boolean,
@@ -36,6 +32,6 @@ const orderSchema = new  mongoose.Schema({
 })
 
 
-const  orderModel = mongoose.model.order ||  mongoose.model("order", orderSchema)
+const  orderModel = mongoose.models.order ||  mongoose.model("order", orderSchema)
 
 export default orderModel
