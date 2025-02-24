@@ -51,8 +51,11 @@ function Navbar() {
     <>
       {/* Fixed Navbar */}
       <nav className="fixed top-0 left-0 w-full bg-gray-50  py-4 flex justify-between items-center px-4 md:px-16 lg:px-32">
-        {/* Logo (Left Side) */}
-        <Link to="/">
+        <Link 
+        to="/" 
+        onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
+        >
+        
           <img className="h-7" src={assets.logo} alt="Logo" />
         </Link>
 
@@ -64,7 +67,7 @@ function Navbar() {
             alt="Search"
           />
           <div className="relative">
-            <Link to="/cart">
+            <Link to="/cart" onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} >
               <img
                 className="h-5 cursor-pointer"
                 src={assets.basket_icon}
@@ -97,7 +100,7 @@ function Navbar() {
                     src={assets.bag_icon}
                     alt=""
                   />
-                  <p className=" text-gray-700 hover:text-orange-600 cursor-pointer ">
+                  <p onClick={()=>navigate('/myorders')} className="text-gray-700 hover:text-orange-600 cursor-pointer ">
                     Order
                   </p>
                 </div>
@@ -191,6 +194,7 @@ function Navbar() {
         <ul className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
           <Link
             to="/"
+            onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
             className="cursor-pointer hover:border-b border-gray-600 hover:font-semibold"
           >
             Home
@@ -230,7 +234,7 @@ function Navbar() {
 
           <Link
             to="/"
-            onClick={() => scrollToSection("home")}
+            onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
             className="cursor-pointer text-lg font-semibold"
           >
             Home

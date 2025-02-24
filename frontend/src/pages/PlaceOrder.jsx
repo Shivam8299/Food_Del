@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function PlaceOrder() {
   const { totalCartAmmount,token,food_list,cartItems,backendUrl } = useContext(StoreContext);
+  const navigate = useNavigate()
   const [data, setData] = useState({
     firstName:"",
     lastName:"",
@@ -23,84 +25,48 @@ function PlaceOrder() {
     setData(data =>({...data,[name]:value}))
   }
 
-//   const placeOrder = async(event)=>{
-//       event.preventDefault();
-//       let orderItems = [];
-//       food_list.map((item)=>{
-//         if(cartItems[item._id]>0){
-//           let itemInfo = item;
-//           itemInfo["quantity"] = cartItems[item._id];
-//           orderItems.push(itemInfo)
-//         }
-//       })
-//       let orderData = {
-//         address:data,
-//         items:orderItems,
-//         amount:totalCartAmmount()+2
-//       }
-//       try {
-//         let response = await axios.post(`${backendUrl}/api/order/place`,orderData,{headers:{token}})
-//       if(response.data.success){
-//         const session_url = response.data.success_url; 
-//          if (session_url) {
-//            window.location.href = session_url;
-// } else {
-//   alert("Error: Invalid session URL");
-// }
-//       }
-//       else{
-//         alert("error");
-//       }
-//       } catch (error) {
-//         console.error("Order placement error:", error);
-//         alert("Error placing order. Please check your network or contact support.");
-//       }
-//   }
-
-const placeOrder = async (event) => {
-  event.preventDefault();
-  
-  let orderItems = [];
-  food_list.forEach((item) => { // ✅ Use forEach instead of map
-    if (cartItems[item._id] > 0) {
-      let itemInfo = { ...item, quantity: cartItems[item._id] }; // ✅ Avoid modifying original object
-      orderItems.push(itemInfo);
-    }
-  });
-
-  let orderData = {
-    address: data,
-    items: orderItems,
-    amount: totalCartAmmount() + 2
-  };
-
-  try {
-    let response = await axios.post(
-      `${backendUrl}/api/order/place`,
-      orderData,
-      {
-        headers: { Authorization: `Bearer ${token}` } // ✅ Standard token format
+  const placeOrder = async(event)=>{
+      event.preventDefault();
+      let orderItems = [];
+      food_list.map((item)=>{
+        if(cartItems[item._id]>0){
+          let itemInfo = item;
+          itemInfo["quantity"] = cartItems[item._id];
+          orderItems.push(itemInfo)
+        }
+      })
+      let orderData = {
+        address:data,
+        items:orderItems,
+        amount:totalCartAmmount()+2
       }
-    );
-
-    if (response.status ===200) {
-      console.log(response.data)
-      const session_url = response.data.success_url; // ✅ Ensure correct key
-      if (session_url) {
-        window.location.href = session_url; // ✅ Better navigation method
+      try {
+        let response = await axios.post(`${backendUrl}/api/order/place`,orderData,{headers:{token}})
+      if(response.status ===200){
+        const session_url = response.data.success_url; 
+         if (session_url) {
+           window.location.href = session_url;
       } else {
         alert("Error: Invalid session URL");
       }
-    } else {
-      alert("Error: Unable to place order");
-    }
-  } catch (error) {
-    console.error("Order placement error:", error);
-    alert("Error placing order. Please check your network or contact support.");
+      }
+      else{
+        alert("error");
+      }
+      } catch (error) {
+        console.error("Order placement error:", error);
+        alert("Error placing order. Please check your network or contact support.");
+      }
   }
-};
 
-
+  useEffect(()=>{
+    if(!token){
+      navigate("/cart")
+    }
+    else if(totalCartAmmount() === 0  ){
+      navigate("/cart")
+    }
+  },[token])
   return (
     <div className=" mt-6  mx-4 sm:mx-2 md:mx-16 lg:mx-24 xl:mx-28">
       <form onSubmit={placeOrder} className="flex flex-col md:flex-row justify-between">

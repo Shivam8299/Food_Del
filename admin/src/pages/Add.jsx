@@ -96,7 +96,7 @@ function Add({backendUrl}) {
         </div>
 
         {/* Category & Price Section */}
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className=" md:w-[480px] flex flex-col md:flex-row mb-6">
           {/* Product Category */}
           <div className="w-full md:w-1/2">
             <p className="text-sm mb-2">Product Category</p>

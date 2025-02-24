@@ -54,7 +54,7 @@ function Cart() {
           </div>
           <div className=" flex justify-between border-b-[1.5px] border-gray-300 p-[6px]">
             <p className="text-sm ">Delivery</p>
-            <p className="text-sm text-gray-800 ">$ 2</p>
+            <p className="text-sm text-gray-800 ">$2</p>
           </div>
           <div className=" flex justify-between p-[6px]">
             <p className="p-1 mb-2 text-sm font-semibold text-gray-800 ">
