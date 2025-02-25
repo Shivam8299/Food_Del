@@ -9,7 +9,7 @@ import Order from './pages/Order'
 import List from './pages/List'
 
 function App() {
-  const backendUrl = "http://localhost:3000";
+  const backendUrl = "https://food-delivery-osyy.onrender.com";
   return (
     <div>
       <ToastContainer position="top-center" autoClose={3000} />
