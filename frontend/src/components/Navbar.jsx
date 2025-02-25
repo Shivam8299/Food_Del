@@ -50,17 +50,17 @@ function Navbar() {
   return (
     <>
       {/* Fixed Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-gray-50  py-4 flex justify-between items-center px-4 md:px-16 lg:px-32">
+      <nav id="home" className="fixed top-0 left-0 w-full bg-[#FFFFFF]   py-4 flex justify-between items-center px-4 md:px-16 lg:px-32">
         <Link 
         to="/" 
         onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
         >
         
-          <img className="h-7" src={assets.logo} alt="Logo" />
+          <img className=" h-5 md:h-6 lg:h-7" src={assets.logo} alt="Logo" />
         </Link>
 
         {/* Right Side (Cart, Search, Sign-in) - Hidden in Mobile */}
-        <div className="hidden lg:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl-space-x-7">
           <img
             className="h-5 cursor-pointer"
             src={assets.search_icon}
@@ -81,7 +81,7 @@ function Navbar() {
           {!token ? (
             <button
               onClick={() => setShowLogin(true)}
-              className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition"
+              className="px-5 py-[6px] border border-amber-500 rounded-full text-sm hover:bg-gray-100 transition"
             >
               Sign in
             </button>
@@ -123,7 +123,7 @@ function Navbar() {
         </div>
 
         {/* Mobile View: Cart & Search Icons next to Menu Button */}
-        <div className="lg:hidden flex items-center space-x-4">
+        <div className="md:hidden flex items-center space-x-4 lg:space-x-6">
           <img
             className="h-5 cursor-pointer"
             src={assets.search_icon}
@@ -144,7 +144,7 @@ function Navbar() {
           {!token ? (
             <button
               onClick={() => setShowLogin(true)}
-              className="px-5 py-[6px] border rounded-full text-sm hover:bg-gray-100 transition"
+              className="px-3 md:px-6 py-1 md:py-[6px] border border-amber-500 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition"
             >
               Sign in
             </button>
@@ -191,7 +191,7 @@ function Navbar() {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+        <ul className="hidden md:flex items-center md:space-x-5 lg:space-x-7 xl:space-x-8 absolute left-[47%] lg:left-1/2 transform -translate-x-1/2">
           <Link
             to="/"
             onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
@@ -223,7 +223,7 @@ function Navbar() {
         <div
           className={`fixed top-0 right-0 h-full w-2/3 sm:w-1/2 bg-white shadow-lg flex flex-col items-start space-y-6 py-10 px-6 transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "translate-x-full"
-          } lg:hidden`}
+          } md:hidden`}
         >
           <button
             className="absolute top-5 right-6 text-3xl"
@@ -232,13 +232,12 @@ function Navbar() {
             <FaTimes />
           </button>
 
-          <Link
-            to="/"
-            onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
+          <a
+            onClick={() => scrollToSection("home")} 
             className="cursor-pointer text-lg font-semibold"
           >
             Home
-          </Link>
+          </a>
           <a
             onClick={() => scrollToSection("menu")}
             className="cursor-pointer text-lg font-semibold"

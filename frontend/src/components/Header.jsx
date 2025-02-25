@@ -3,16 +3,15 @@ import { assets } from "../assets/frontend_assets/assets";
 
 function Header() {
   return (
-    <div className="px-4">
       <div
-        className="bg-cover bg-center h-[450px] rounded-xl w-full flex items-center"
+        className="bg-cover bg-center h-[450px] rounded-xs md:rounded-lg lg:rounded-xl w-full flex items-center"
         style={{ backgroundImage: `url(${assets.header_img})` }}
       >
         <div className="max-w-[600px] px-4 md:px-10 lg:px-24">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4 leading-tight">
             Order your <br /> Favorite food here
           </h1>
-          <p className="text-sm sm:text-base text-white leading-6 mb-4">
+          <p className="text-[18px] sm:text-base leading-6 md:leading-relaxed text-[#FFFFFF] mb-4">
             Choose from a diverse menu featuring a delectable array of dishes
             crafted with the finest ingredients and culinary expertise. Our
             mission is to satisfy your cravings and elevate your dining
@@ -23,7 +22,7 @@ function Header() {
           </button>
         </div>
       </div>
-    </div>
+  
   );
 }
 

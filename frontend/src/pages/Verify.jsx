@@ -22,11 +22,11 @@ function Verify() {
     }
     useEffect(()=>{
         verifyPayment()
-    })
+    },[])
 
   return (
-    <div className="h-12 w-12 border-4 border-black border-t-red-600 rounded-full animate-spin">
-        
+    <div className="h-screen flex justify-center bg-white items-center">
+        <div className="h-12 w-12 border-4 border-black border-t-red-600 rounded-full animate-spin"></div>
     </div>
   )
 }

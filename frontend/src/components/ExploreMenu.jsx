@@ -3,9 +3,9 @@ import { menu_list } from "../assets/frontend_assets/assets";
 function ExploreMenu({ category, setCategory }) {
   return (
     <div id='menu' className="pt-8 w-full">
-      <div className="ml-1 sm:ml-2 md:ml-3">
+      <div className="md:ml-3">
       <h1 className="mb-6 text-2xl lg:text-3xl text-center md:text-start font-semibold">Explore our menu</h1>
-      <p className="max-w-[600px] text-xs md:text-sm text-black mb-10">
+      <p className="max-w-[600px] text-[14px] leading-relaxed text-black mb-10">
         Choose from a diverse menu featuring a delectable array of dishes. Our
         mission is to satisfy your cravings and elevate your dining experience,
         one delicious meal at a time.
@@ -27,7 +27,7 @@ function ExploreMenu({ category, setCategory }) {
               className="flex flex-col items-center cursor-pointer"
             >
               <img
-                className={`${category === item.menu_name ? "border-2 rounded-full p-[2px] border-red-400" : ""} h-32 lg:h-36`}
+                className={`${category === item.menu_name ? "border-2 rounded-full p-[2px] border-amber-600" : ""} h-[110px] md:h-[120px] lg:h-36`}
                 src={item.menu_image}
                 alt=""
               />
