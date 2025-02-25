@@ -12,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // console.log("stripe key",process.env.STRIPE_SECRET_KEY)
 
 const placeOrder = async (req,res)=>{
-    const frontendUrl = "http://localhost:5173"
+    const frontendUrl = "https://food-delivery-frontend-t4zz.onrender.com"
     try {
         const newOrder  = new orderModel({
             userId: req.body.userId,
