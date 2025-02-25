@@ -34,7 +34,7 @@ function MyOrders() {
                             return item.name+" x "+item.quantity+", "
                         }
                     })}</p>
-                    <p className='text-sm ml-8 md:ml-16 lg:ml-0   text-gray-600'>${order.amount}.00</p>
+                    <p className='text-sm ml-8 md:ml-16 lg:ml-6 text-gray-600'>${order.amount}.00</p>
                     <p className='text-sm ml-2 md:ml-0 lg:ml-4 text-gray-600'>items: {order.items.length}</p>
                     <p className='text-xs sm:text-sm  text-gray-800' ><span>&#x25cf;</span> <b>{order.status}</b></p>
                     <button className='mx-4 md:mx-6  py-[6px] bg-red-100 text-xs md:text-sm rounded-sm hover:bg-red-400 hover:text-white cursor-pointer transition-all duration-300'>Track Order</button>

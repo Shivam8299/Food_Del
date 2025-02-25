@@ -45,21 +45,21 @@ function List({backendUrl}) {
   // console.log(list.map(data => data._id))
   return (
     <div className="mt-16 md:mt-20 py-4 px-1 md:px-8">
-      <h1 className=" text-lg text-center md:text-start md:text-xl text-gray-700 font-semibold mb-4">
-      food Items
+      <h1 className=" text-lg text-center md:text-start md:text-xl lg:font-bold text-black font-semibold mb-4">
+      Food Items
       </h1>
-      <div className="flex justify-between rounded-xs border border-b-[1.5px] border-b-gray-700 bg-gray-100 px-2 md:px-6 py-4 text-sm">
-        <b className="text-gray-700">Image</b>
-        <b className="text-gray-700">Name</b>
-        <b className="text-gray-700">Category</b>
-        <b className="text-gray-700">Price</b>
-        <b className="text-gray-700">Action</b>
+      <div className="flex justify-between px-2 md:px-6 py-4 mb-4 text-sm">
+        <b className="text-gray-800">Image</b>
+        <b className="text-gray-800">Name</b>
+        <b className="text-gray-800">Category</b>
+        <b className="text-gray-800">Price</b>
+        <b className="text-gray-800">Action</b>
       </div>
       {list.map((item, index) => {
         return (
           <div
             key={index}
-            className="flex justify-between bg-gray-50 pr-4 md:pr-8 lg:pr-16 items-center py-2 px-1 md:px-4 rounded-xs border border-t-0"
+            className="flex justify-between bg-gray-50 pr-4 md:pr-8 lg:pr-16 items-center py-2 px-1 md:px-4  shadow-sm border  mb-3 border-amber-500"
           >
             <img
               className=" h-12 w-12 md:h-14 md:w-14  rounded-xs"

@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { menu_list } from "../assets/frontend_assets/assets";
-
 function ExploreMenu({ category, setCategory }) {
   return (
     <div id='menu' className="pt-8 w-full">
       <div className="ml-1 sm:ml-2 md:ml-3">
       <h1 className="mb-6 text-2xl lg:text-3xl text-center md:text-start font-semibold">Explore our menu</h1>
-      <p className="max-w-[600px] text-xs text-black mb-10">
+      <p className="max-w-[600px] text-xs md:text-sm text-black mb-10">
         Choose from a diverse menu featuring a delectable array of dishes. Our
         mission is to satisfy your cravings and elevate your dining experience,
         one delicious meal at a time.

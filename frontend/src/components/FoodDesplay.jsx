@@ -4,11 +4,11 @@ import { assets } from "../assets/frontend_assets/assets";
 
 function FoodDisplay({ category }) {
   const { cartItems, setCartItems, addToCart, removeFromCart } = useContext(StoreContext);
+
+  console.log("line 8", category)
  
 
   const { food_list,backendUrl} = useContext(StoreContext);
-
-  // Function to handle incrementing item count
   const handleIncrement = (id) => {
     setItemCounts((prevCounts) => ({
       ...prevCounts,
@@ -26,6 +26,7 @@ function FoodDisplay({ category }) {
           .filter((item) => category === "All" || item.category === category)
           .map((item) => {
             return (
+              
               <div
                 className="shadow-lg flex flex-col mx-1  justify-center"
                 key={item._id}
