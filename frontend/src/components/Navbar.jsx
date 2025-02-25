@@ -9,6 +9,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const { totalCartAmmount, token, setToken } = useContext(StoreContext);
+  const [showOrder, setShowOrder] = useState(false)
   const navigate = useNavigate()
 
   const scrollToSection = (id) => {
@@ -86,39 +87,44 @@ function Navbar() {
               Sign in
             </button>
           ) : (
-            <div className="relative group">
               <img
+                onClick={()=>setShowOrder(true)}
                 className={`h-6 w-6 p-1 cursor-pointer border rounded-full  `}
                 src={assets.profile_icon}
                 alt=""
-              />
-
-            <div className=" w-32 border border-gray-400 rounded-md p-4  absolute bg-white  shadow-lg group-hover:visible  invisible">
+              />             
+          )}
+          {showOrder && 
+          <div className=" w-32 border border-gray-400 rounded-sm p-4 absolute top-11 right-11 bg-white">
                 <div className="flex gap-1  border-b pb-1 mb-1">
                   <img
+                    onClick={()=>{setShowOrder(false),navigate('/myorders')}}
                     className="h-5  cursor-pointer hover:text-orange-600"
                     src={assets.bag_icon}
                     alt=""
                   />
-                  <p onClick={()=>navigate('/myorders')} className="text-gray-700 hover:text-orange-600 cursor-pointer ">
+                  <p  
+                  className="text-gray-700 hover:text-orange-600 cursor-pointer"
+                  onClick={()=>{setShowOrder(false),navigate('/myorders')}}
+                  >
                     Order
                   </p>
                 </div>
                 <div className="flex gap-1 mb-2">
                   <img
-                    onClick={logout}
+                    onClick={()=>{setShowOrder(false),logout}}
                     className="h-5 w-6 cursor-pointer hover:text-orange-600"
                     src={assets.logout_icon}
                     alt=""
                   />
-                  <p onClick={logout} className=" text-gray-700 hover:text-orange-600 cursor-pointer ">
+                  <p  
+                  onClick={()=>{setShowOrder(false),logout}}
+                  className="text-gray-700 hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
                 </div>
               </div>
-             
-            </div>
-          )}
+}
           {showLogin && <Login setShowLogin={setShowLogin} />}
         </div>
 
@@ -149,39 +155,44 @@ function Navbar() {
               Sign in
             </button>
           ) : (
-            <div className="relative group">
               <img
+                onClick={()=>setShowOrder(true)}
                 className={`h-6 w-6 p-1 cursor-pointer border rounded-full  `}
                 src={assets.profile_icon}
                 alt=""
-              />
-
-            <div className=" w-24 h-24 py-3 p-1 absolute bg-white  shadow-lg group-hover:visible  invisible">
-                <div className="flex gap-1 mb-2">
+              />             
+          )}
+          {showOrder && 
+          <div className=" w-20 h-[70px]  border border-gray-400 rounded-sm p-1 absolute top-[46px] pt-2 right-[-10px] bg-white">
+                <div className="flex gap-1  border-b pb-2 mb-1">
                   <img
-                    className="h-5 cursor-pointer hover:text-orange-600"
+                    onClick={()=>{setShowOrder(false),navigate('/myorders')}}
+                    className="h-4  cursor-pointer hover:text-orange-600"
                     src={assets.bag_icon}
                     alt=""
                   />
-                  <p className=" text-orange-400 hover:text-orange-600 cursor-pointer ">
+                  <p  
+                  className="text-gray-700 hover:text-orange-600 text-xs cursor-pointer"
+                  onClick={()=>{setShowOrder(false),navigate('/myorders')}}
+                  >
                     Order
                   </p>
                 </div>
                 <div className="flex gap-1 mb-2">
                   <img
-                    onClick={logout}
-                    className="h-5 w-6 cursor-pointer hover:text-orange-600"
+                    onClick={()=>{setShowOrder(false),logout()}}
+                    className="h-4 w-5 cursor-pointer hover:text-orange-600"
                     src={assets.logout_icon}
                     alt=""
                   />
-                  <p onClick={logout} className=" text-orange-400 hover:text-orange-600 cursor-pointer ">
+                  <p  
+                  onClick={()=>{setShowOrder(false),logout()}}
+                  className="text-gray-700 text-xs hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
                 </div>
               </div>
-             
-            </div>
-          )}
+}
           {showLogin && <Login setShowLogin={setShowLogin} />}
 
           {/* Mobile Menu Button */}
