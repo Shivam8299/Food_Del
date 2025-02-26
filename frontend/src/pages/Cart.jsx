@@ -2,42 +2,82 @@ import React, { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { assets } from "../assets/frontend_assets/assets";
 import { useNavigate } from "react-router-dom";
+import { Trash2 } from "lucide-react";
 
 function Cart() {
   // console.log(itemCounts)
-  const { cartItems, backendUrl, food_list, removeFromCart, totalCartAmmount } = useContext(StoreContext);
+  const { cartItems, backendUrl, food_list, removeFromCart, totalCartAmmount } =
+    useContext(StoreContext);
   const navigate = useNavigate();
   // console.log(cartItems);
   return (
-    <div className=" mx-4 md:mx-16 lg:mx-28 mt-12 bg-gray-50">
-      <div className="flex border-b border-gray-400 pb-2 justify-between ">
-        <p className="font-semibold text-md">item</p>
-        <p className="font-semibold text-md">Title</p>
-        <p className="font-semibold text-md">Price</p>
-        <p className="font-semibold text-md">Quantity</p>
-        <p className="font-semibold text-md">total</p>
-        <img className="h-5 " src={assets.cross_icon} alt="" />
+    <div className=" mx-4 md:mx-16 lg:mx-28 mt-12 bg-[[#FFFFFF]]">
+      <div className="grid grid-cols-6 items-center text-center gap-4 border-b  border-amber-400 pb-2">
+        <p className="font-semibold text-md flex items-center justify-center">
+          Item
+        </p>
+        <p className="font-semibold text-md flex items-center justify-center">
+          Title
+        </p>
+        <p className="font-semibold text-md flex items-center justify-center">
+          Price
+        </p>
+        <p className="font-semibold text-md flex items-center justify-center">
+          Quantity
+        </p>
+        <p className="font-semibold text-md flex items-center justify-center">
+          Total
+        </p>
+        <p className="font-semibold text-md flex items-center justify-center">
+          Remove
+        </p>
       </div>
+
       {food_list.map((item, index) => {
         if (cartItems[item._id] > 0) {
           return (
             <div
               key={index}
-              className="flex justify-between border-b border-gray-400 items-center py-2 mt-4 mb-8"
+              className="grid grid-cols-6 items-center border  text-center gap-4  border-amber-400 py-3 mt-4 mb-8"
             >
-              <img className="h-10 " src={backendUrl+"/images/"+item.image} alt="" />
-              <p className="text-sm  text-gray-700 ">{item.name}</p>
-              <p className="text-gray-700">${item.price}</p>
-              <p className="text-gray-700">{cartItems[item._id]}</p>
-              <p className="text-gray-700">
+              {/* Image */}
+              <div className="flex items-center justify-center">
+                <img
+                  className="h-9 md:h-10"
+                  src={backendUrl + "/images/" + item.image}
+                  alt={item.name}
+                />
+              </div>
+
+              {/* Name */}
+              <p className="text-sm md:text-sm text-black flex items-center justify-center">
+                {item.name}
+              </p>
+
+              {/* Price */}
+              <p className="text-black flex items-center justify-center">
+                ${item.price}
+              </p>
+
+              {/* Quantity */}
+              <p className="text-black flex items-center justify-center">
+                {cartItems[item._id]}
+              </p>
+
+              {/* Total Price */}
+              <p className="text-black flex items-center justify-center">
                 ${item.price * cartItems[item._id]}
               </p>
-              <img
-                onClick={() => removeFromCart(item._id)}
-                className="h-4 mt-1 lg:pr-6 cursor-pointer"
-                src={assets.cross_icon}
-                alt=""
-              />
+
+              {/* Remove Button */}
+              <div className="flex items-center justify-center">
+                <button
+                  onClick={() => removeFromCart(item._id)}
+                  className="cursor-pointer text-black rounded"
+                >
+                  <Trash2 size={20} />
+                </button>
+              </div>
             </div>
           );
         }
@@ -49,18 +89,28 @@ function Cart() {
             Cart Total
           </p>
           <div className="flex justify-between border-b-[1.5px] border-gray-300">
-            <p className="text-sm p-[6px]">Subtotal</p>
-            <p className="text-sm mr-1 text-gray-800">{totalCartAmmount()}</p>
+            <p className="text-sm md:text-base font-semibold p-[6px]">
+              Sub-Total
+            </p>
+            <p className="text-sm mr-1 md:text-base font-semibold text-black">
+              ${totalCartAmmount()}
+            </p>
           </div>
           <div className=" flex justify-between border-b-[1.5px] border-gray-300 p-[6px]">
-            <p className="text-sm ">Delivery</p>
-            <p className="text-sm text-gray-800 ">$2</p>
+            <p className="text-sm md:text-base font-semibold ">
+              Delivery Charges
+            </p>
+            <p className="text-sm  md:text-base font-semibold text-black ">
+              $2
+            </p>
           </div>
           <div className=" flex justify-between p-[6px]">
-            <p className="p-1 mb-2 text-sm font-semibold text-gray-800 ">
-              Total
+            <p className="p-1 mb-2 text-sm md:text-base font-semibold text-gray-800 ">
+              Final Price
             </p>
-            <p className="text-gray-800">${totalCartAmmount() + 2} </p>
+            <p className="text-black text-base font-semibold">
+              ${totalCartAmmount() + 2}{" "}
+            </p>
           </div>
           <button
             onClick={() => navigate("/order")}
