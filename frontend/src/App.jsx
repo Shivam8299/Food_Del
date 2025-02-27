@@ -8,10 +8,13 @@ import Footer from "./components/Footer";
 import AppDownload from "./components/AppDownload";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div className="mt-4 bg-gray-50 ">
+    <div className="bg-gray-50 ">
+      <ToastContainer position="top-center" autoClose={3000} />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

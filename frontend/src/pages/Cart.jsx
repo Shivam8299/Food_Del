@@ -11,7 +11,7 @@ function Cart() {
   const navigate = useNavigate();
   // console.log(cartItems);
   return (
-    <div className=" mx-4 md:mx-16 lg:mx-28 mt-12 bg-[[#FFFFFF]]">
+    <div className=" mx-1 sm:mx-2 md:mx-16 lg:mx-28 mt-12 bg-[[#FFFFFF]]">
       <div className="grid grid-cols-6 items-center text-center gap-4 border-b  border-amber-400 pb-2">
         <p className="font-semibold text-md flex items-center justify-center">
           Item

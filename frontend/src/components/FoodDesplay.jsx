@@ -31,7 +31,7 @@ function FoodDisplay({ category }) {
                 key={item._id}
               >
                 <img
-                  className="rounded-t-lg  mb-6"
+                  className="rounded-t-xs  md:rounded-t-md lg:rounded-top-lg  mb-6"
                   src={backendUrl + "/images/" + item.image}
                   alt={item.name}
                 />
@@ -39,12 +39,12 @@ function FoodDisplay({ category }) {
                   {!cartItems[item._id] ? (
                     <img
                       onClick={() => addToCart(item._id)}
-                      className="cursor-pointer absolute bottom-10 right-6 w-10 h-10 md:w-8 md:h-8"
+                      className="cursor-pointer absolute bottom-12 right-6 w-10 h-10 md:w-8 md:h-8"
                       src={assets.add_icon_white}
                       alt="Add"
                     />
                   ) : (
-                    <div className="flex gap-2 absolute bottom-10 right-5  bg-white py-[6px] px-3 rounded-full">
+                    <div className="flex gap-2 absolute bottom-12 right-5  bg-white py-[6px] px-3 rounded-full">
                       <img
                         className="w-6 h-6 cursor-pointer"
                         onClick={() => addToCart(item._id)}

@@ -4,7 +4,7 @@ import { assets } from "../assets/frontend_assets/assets";
 function Header() {
   return (
       <div
-        className="bg-cover  bg-center h-[450px] rounded-xs md:rounded-lg lg:rounded-xl w-full flex items-center"
+        className="bg-cover bg-center h-[450px]  md:rounded-lg lg:rounded-xl w-full flex items-center"
         style={{ backgroundImage: `url(${assets.header_img})` }}
       >
         <div className="max-w-[600px] px-4 md:px-10 lg:px-24">
