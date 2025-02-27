@@ -58,7 +58,7 @@ function Navbar() {
   return (
     <>
       {/* Fixed Navbar */}
-      <nav id="home" className="fixed top-0 left-0 w-full bg-[#FFFFFF]   py-4 flex justify-between items-center px-4 md:px-16 lg:px-32">
+      <nav id="home" className="fixed z-50 top-0 left-0 w-full bg-[#FFFFFF]   py-4 flex justify-between items-center px-4 md:px-16 lg:px-32">
         <Link 
         to="/" 
         onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} 
@@ -103,9 +103,9 @@ function Navbar() {
               />             
           )}
           {showOrder && 
-          <div className=" w-32 shadow-lg border-gray-400 rounded-xs p-4 absolute top-11 right-11 bg-white">
-             <img onClick={()=>setShowOrder(false)} className="h-3 absolute top-2 right-2  " src={assets.cross_icon} alt="" />
-                <div className="flex gap-1  border-b pb-1 mb-1">
+          <div className=" w-36 h-28 shadow-md border-gray-400 p-4 absolute top-11 right-6 bg-white">
+             <img onClick={()=>setShowOrder(false)} className="h-4 absolute top-2 right-2 " src={assets.cross_icon} alt="" />
+                <div className="flex gap-1  border-b border-amber-400 pb-2 mb-1 mt-2">
                   <img
                     onClick={()=>{setShowOrder(false),navigate('/myorders')}}
                     className="h-5  cursor-pointer hover:text-orange-600"
@@ -113,10 +113,10 @@ function Navbar() {
                     alt=""
                   />
                   <p  
-                  className="text-gray-700 hover:text-orange-600 cursor-pointer"
+                  className="text-black text-base hover:text-orange-600 cursor-pointer"
                   onClick={()=>{setShowOrder(false),navigate('/myorders'),scrollTo({ top: 0, behavior: "smooth" })}}
                   >
-                    Order
+                    My Orders
                   </p>
                 </div>
                 <div className="flex gap-1 mb-2">
@@ -125,7 +125,7 @@ function Navbar() {
                       setShowOrder(false);
                       logout();
                     }}
-                    className="h-5 w-6 cursor-pointer hover:text-orange-600"
+                    className="h-6 w-6 cursor-pointer hover:text-orange-600"
                     src={assets.logout_icon}
                     alt=""
                   />
@@ -135,7 +135,7 @@ function Navbar() {
                     logout();
                   }}
                   
-                  className="text-gray-700 hover:text-orange-600 cursor-pointer">
+                  className="text-black text-base hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
                 </div>
@@ -179,26 +179,26 @@ function Navbar() {
               />             
           )}
           {showOrder && 
-          <div className=" w-20 h-[70px] shadow-lg rounded-xs p-1 absolute top-[46px] pt-3 right-[-10px] bg-white">
-                <img onClick={()=>setShowOrder(false)} className="h-[9px] absolute top-2 right-2  " src={assets.cross_icon} alt="" />
-                <div className="flex gap-1 border-b pb-2 mb-1">
+          <div className=" w-[105px] h-[90px] shadow-lg rounded-xs p-1 absolute top-[46px] pt-3 right-[-16px] bg-white">
+                <img onClick={()=>setShowOrder(false)} className="h-[11px] absolute top-2 right-2  " src={assets.cross_icon} alt="" />
+                <div className="flex gap-1 border-b border-amber-400 pb-2 mb-1 mt-2">
                   <img
                     onClick={()=>{setShowOrder(false),navigate('/myorders')}}
-                    className="h-4 p cusor-pointer hover:text-orange-600"
+                    className="h-[18px] p cusor-pointer hover:text-orange-600"
                     src={assets.bag_icon}
                     alt=""
                   />
                   <p  
-                  className="text-gray-800  hover:text-orange-600 text-xs cursor-pointer"
+                  className="text-gray-800  hover:text-orange-600 text-sm  cursor-pointer"
                   onClick={()=>{setShowOrder(false),navigate('/myorders'),scrollTo({ top: 0, behavior: "smooth" })}}
                   >
-                    Order
+                    My Orders
                   </p>
                 </div>
                 <div className="flex gap-1 mb-2">
                   <img
                     onClick={()=>{setShowOrder(false),logout()}}
-                    className="h-4 w-5  cursor-pointer hover:text-orange-600"
+                    className="h-5 w-6  cursor-pointer hover:text-orange-600"
                     src={assets.logout_icon}
                     alt=""
                   />
@@ -208,7 +208,7 @@ function Navbar() {
                     setShowOrder(false);
                   }}
                   
-                  className="text-gray-800 text-xs hover:text-orange-600 cursor-pointer">
+                  className="text-gray-800 text-sm hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
                 </div>

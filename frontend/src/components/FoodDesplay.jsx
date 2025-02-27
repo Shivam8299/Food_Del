@@ -39,12 +39,12 @@ function FoodDisplay({ category }) {
                   {!cartItems[item._id] ? (
                     <img
                       onClick={() => addToCart(item._id)}
-                      className="cursor-pointer absolute bottom-12 right-6 w-10 h-10 md:w-8 md:h-8"
+                      className="cursor-pointer absolute bottom-12 right-6 z-0 w-10 h-10 md:w-8 md:h-8"
                       src={assets.add_icon_white}
                       alt="Add"
                     />
                   ) : (
-                    <div className="flex gap-2 absolute bottom-12 right-5  bg-white py-[6px] px-3 rounded-full">
+                    <div className="flex gap-2 absolute bottom-12 right-5 z-0  bg-white py-[6px] px-3 rounded-full">
                       <img
                         className="w-6 h-6 cursor-pointer"
                         onClick={() => addToCart(item._id)}
