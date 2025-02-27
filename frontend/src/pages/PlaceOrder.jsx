@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function PlaceOrder() {
   const { totalCartAmmount,token,food_list,cartItems,backendUrl } = useContext(StoreContext);
@@ -46,24 +47,43 @@ function PlaceOrder() {
         const session_url = response.data.success_url; 
          if (session_url) {
            window.location.href = session_url;
+           toast.success("Order Placed ", {
+                   position: "top-right", 
+                   icon: <AiOutlineCheckCircle size={24} className="text-green-600" />, 
+                 });
       } else {
-        alert("Error: Invalid session URL");
+        toast.error("Invalid session URL", {
+                position: "top-right", 
+                icon: <AiOutlineCheckCircle size={24} className="text-green-600" />, 
+              });
       }
       }
       else{
-        alert("error");
+        toast.error("Error", {
+          position: "top-right", 
+          icon: <AiOutlineCheckCircle size={24} className="text-green-600" />, 
+        });
       }
       } catch (error) {
         console.error("Order placement error:", error);
-        alert("Error placing order. Please check your network or contact support.");
+        toast.error("Error placing order. Please check your network or contact support.", {
+          position: "top-right", 
+          icon: <AiOutlineCheckCircle size={24} className="text-green-600" />, 
+        });
       }
   }
 
   useEffect(()=>{
     if(!token){
+      toast.error("⚠️ Please register or login to place your order!",{
+        position: "top-right", 
+      })
       navigate("/cart")
     }
     else if(totalCartAmmount() === 0  ){
+      toast.error("🛒 Your cart is empty. Start adding delicious items!",{
+        position: "top-right", 
+      })
       navigate("/cart")
     }
   },[token])

@@ -4,6 +4,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { StoreContext } from "../context/StoreContext";
+import { toast } from "react-toastify";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,8 +45,13 @@ function Navbar() {
 
   const logout = ()=>{
       localStorage.removeItem("token")
-      setToken('')
+      toast.success("Logged out successfully! See you soon. 👋", {
+              position: "top-right", 
+              icon: <AiOutlineCheckCircle size={24} className="text-green-600" />, 
+      });
+      setToken("")
       navigate('/')
+
 
   }
 
@@ -114,13 +121,20 @@ function Navbar() {
                 </div>
                 <div className="flex gap-1 mb-2">
                   <img
-                    onClick={()=>{setShowOrder(false),logout}}
+                    onClick={() => {
+                      setShowOrder(false);
+                      logout();
+                    }}
                     className="h-5 w-6 cursor-pointer hover:text-orange-600"
                     src={assets.logout_icon}
                     alt=""
                   />
                   <p  
-                  onClick={()=>{setShowOrder(false),logout}}
+                  onClick={() => {
+                    setShowOrder(false);
+                    logout();
+                  }}
+                  
                   className="text-gray-700 hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
@@ -189,7 +203,11 @@ function Navbar() {
                     alt=""
                   />
                   <p  
-                  onClick={()=>{setShowOrder(false),logout()}}
+                  onClick={() => {
+                    logout();
+                    setShowOrder(false);
+                  }}
+                  
                   className="text-gray-800 text-xs hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
