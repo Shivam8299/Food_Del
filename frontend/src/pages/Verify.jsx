@@ -25,9 +25,9 @@ function Verify() {
     },[])
 
   return (
-    <div className="h-screen flex mt-44 bg-white items-center">
-        <div className="h-12 w-12 border-4 border-zinc-400 border-t-red-600 rounded-full animate-spin"></div>
-    </div>
+    <div className=" w-full h-screen flex justify-center items-center bg-white">
+  <div className="h-12 w-12 border-4 border-zinc-400 border-t-red-600 rounded-full animate-spin"></div>
+</div>
   )
 }
 

@@ -5,7 +5,7 @@ function ExploreMenu({ category, setCategory }) {
     <div id='menu' className="pt-8 w-full">
       <div className="md:ml-3">
       <h1 className="mb-6 text-2xl lg:text-3xl text-center md:text-start font-semibold">Explore our menu</h1>
-      <p className="max-w-[600px] text-[14px] leading-relaxed text-black mb-10">
+      <p className="max-w-[600px] text-[14px] leading-relaxed text-black px-2 mb-10">
         Choose from a diverse menu featuring a delectable array of dishes. Our
         mission is to satisfy your cravings and elevate your dining experience,
         one delicious meal at a time.
