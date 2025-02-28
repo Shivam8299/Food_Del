@@ -6,6 +6,7 @@ import Login from "./Login";
 import { StoreContext } from "../context/StoreContext";
 import { toast } from "react-toastify";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { Search, ShoppingCart } from "lucide-react";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,18 +71,15 @@ function Navbar() {
         {/* Right Side (Cart, Search, Sign-in) - Hidden in Mobile */}
        
         <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl-space-x-7">
-          <img
-            className="h-5 cursor-pointer"
-            src={assets.search_icon}
-            alt="Search"
-          />
+          <Search className="text-gray-600 cursor-pointer" size={23} />
           <div className="relative">
             <Link to="/cart" onClick={()=>scrollTo({ top: 0, behavior: "smooth" })} >
-              <img
+              {/* <img
                 className="h-5 cursor-pointer"
                 src={assets.basket_icon}
                 alt="Basket"
-              />
+              /> */}
+               <ShoppingCart className="text-gray-700 cursor-pointer" size={24} />
             </Link>
             {totalCartAmmount() !== 0 && (
               <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
@@ -96,16 +94,15 @@ function Navbar() {
             </button>
           ) : (
               <img
-                onClick={()=>setShowOrder(true)}
+                onClick={()=>setShowOrder(!showOrder)}
                 className={`h-6 w-6 p-1 cursor-pointer border rounded-full  `}
                 src={assets.profile_icon}
                 alt=""
               />             
           )}
           {showOrder && 
-          <div className=" w-36 h-28 shadow-md border-gray-400 p-4 absolute top-11 right-6 bg-white">
-             <img onClick={()=>setShowOrder(false)} className="h-4 absolute top-2 right-2 " src={assets.cross_icon} alt="" />
-                <div className="flex gap-1  border-b border-amber-400 pb-2 mb-1 mt-2">
+          <div className=" w-32 h-[90px] shadow-md  border-gray-400 p-2 absolute top-11 right-9 bg-white">
+                <div className="flex gap-1 border-b border-amber-400 pb-2 mb-1 ">
                   <img
                     onClick={()=>{setShowOrder(false),navigate('/myorders')}}
                     className="h-5  cursor-pointer hover:text-orange-600"
@@ -119,7 +116,7 @@ function Navbar() {
                     My Orders
                   </p>
                 </div>
-                <div className="flex gap-1 mb-2">
+                <div className="flex gap-1 mt-1 ">
                   <img
                     onClick={() => {
                       setShowOrder(false);
@@ -135,7 +132,7 @@ function Navbar() {
                     logout();
                   }}
                   
-                  className="text-black text-base hover:text-orange-600 cursor-pointer">
+                  className="text-black text-base  hover:text-orange-600  cursor-pointer">
                     Log Out
                   </p>
                 </div>
@@ -146,18 +143,15 @@ function Navbar() {
 
         {/* Mobile View: Cart & Search Icons next to Menu Button */}
         <div className="md:hidden flex items-center space-x-4 lg:space-x-6">
-          <img
-            className="h-5 cursor-pointer"
-            src={assets.search_icon}
-            alt="Search"
-          />
+        <Search className="text-gray-600 cursor-pointer" size={23} />
           <div className="relative">
             <Link to="/cart">
-              <img
+              {/* <img
                 className="h-5 cursor-pointer"
                 src={assets.basket_icon}
                 alt="Basket"
-              />
+              /> */}
+               <ShoppingCart className="text-gray-700 cursor-pointer" size={24} />
             </Link>
             {totalCartAmmount() !== 0 && (
               <div className="h-2 w-2 rounded-full bg-red-500 absolute -top-1 -right-1"></div>
@@ -172,16 +166,15 @@ function Navbar() {
             </button>
           ) : (
               <img
-                onClick={()=>setShowOrder(true)}
+                onClick={()=>setShowOrder(!showOrder)}
                 className={`h-6 w-6 p-1 cursor-pointer border rounded-full  `}
                 src={assets.profile_icon}
                 alt=""
               />             
           )}
           {showOrder && 
-          <div className=" w-[105px] h-[90px] shadow-lg rounded-xs p-1 absolute top-[46px] pt-3 right-[-16px] bg-white">
-                <img onClick={()=>setShowOrder(false)} className="h-[11px] absolute top-2 right-2  " src={assets.cross_icon} alt="" />
-                <div className="flex gap-1 border-b border-amber-400 pb-2 mb-1 mt-2">
+            <div className=" w-[105px] h-[85px] shadow-lg rounded-xs p-1 absolute top-[46px] pt-3 right-[-16px] bg-white">
+                <div className="flex gap-1 border-b border-amber-400 pb-2 mb-1 mt-1">
                   <img
                     onClick={()=>{setShowOrder(false),navigate('/myorders')}}
                     className="h-[18px] p cusor-pointer hover:text-orange-600"
@@ -189,7 +182,7 @@ function Navbar() {
                     alt=""
                   />
                   <p  
-                  className="text-gray-800  hover:text-orange-600 text-sm  cursor-pointer"
+                  className="text-black  hover:text-orange-600 text-sm  cursor-pointer"
                   onClick={()=>{setShowOrder(false),navigate('/myorders'),scrollTo({ top: 0, behavior: "smooth" })}}
                   >
                     My Orders
@@ -208,7 +201,7 @@ function Navbar() {
                     setShowOrder(false);
                   }}
                   
-                  className="text-gray-800 text-sm hover:text-orange-600 cursor-pointer">
+                  className="text-black text-sm hover:text-orange-600 cursor-pointer">
                     Log Out
                   </p>
                 </div>
@@ -218,7 +211,7 @@ function Navbar() {
 
           {/* Mobile Menu Button */}
           <button className="text-3xl" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <FaTimes /> : <FaBars />}
+            {isOpen ? <FaTimes /> : <FaBars size={23}/>}
           </button>
         </div>
 
@@ -261,7 +254,7 @@ function Navbar() {
             className="absolute top-5 right-6 text-3xl"
             onClick={() => setIsOpen(false)}
           >
-            <FaTimes />
+            <FaTimes/>
           </button>
 
           <a

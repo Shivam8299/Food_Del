@@ -11,24 +11,24 @@ function Cart() {
   const navigate = useNavigate();
   // console.log(cartItems);
   return (
-    <div className=" mx-1 sm:mx-2 md:mx-16 lg:mx-28 mt-12 bg-[[#FFFFFF]]">
-      <div className="grid grid-cols-6 items-center text-center gap-4 border-b  border-amber-400 pb-2">
-        <p className="font-semibold text-md flex items-center justify-center">
+    <div className=" mx-1 sm:mx-2 md:mx-16 lg:mx-28 mt-12 bg-[#FFFFFF]  ">
+      <div className="grid grid-cols-6 items-center text-center gap-4 border-b pr-1  border-amber-400 pb-2">
+        <p className="font-semibold text-xs md:text-md flex items-center justify-center">
           Item
         </p>
-        <p className="font-semibold text-md flex items-center justify-center">
+        <p className="font-semibold text-xs sm:text-sm  md:text-md flex items-center justify-center">
           Title
         </p>
-        <p className="font-semibold text-md flex items-center justify-center">
+        <p className="font-semibold text-xs sm:text-sm  md:text-md flex items-center justify-center">
           Price
         </p>
-        <p className="font-semibold text-md flex items-center justify-center">
+        <p className="font-semibold text-xs sm:text-sm  md:text-md flex items-center justify-center">
           Quantity
         </p>
-        <p className="font-semibold text-md flex items-center justify-center">
+        <p className="font-semibold text-xs sm:text-sm  md:text-md flex items-center justify-center">
           Total
         </p>
-        <p className="font-semibold text-md flex items-center justify-center">
+        <p className="font-semibold text-xs sm:text-sm  md:text-md flex items-center justify-center">
           Remove
         </p>
       </div>
@@ -43,29 +43,29 @@ function Cart() {
               {/* Image */}
               <div className="flex items-center justify-center">
                 <img
-                  className="h-9 md:h-10"
+                  className="h-9 ml-1 md:h-10"
                   src={backendUrl + "/images/" + item.image}
                   alt={item.name}
                 />
               </div>
 
               {/* Name */}
-              <p className="text-sm md:text-sm text-black flex items-center justify-center">
+              <p className="text-xs sm:text-sm  text-black flex items-center justify-center">
                 {item.name}
               </p>
 
               {/* Price */}
-              <p className="text-black flex items-center justify-center">
+              <p className="text-black text-xs sm:text-sm flex items-center justify-center">
                 ${item.price}
               </p>
 
               {/* Quantity */}
-              <p className="text-black flex items-center justify-center">
+              <p className="text-black text-xs sm:text-sm  flex items-center justify-center">
                 {cartItems[item._id]}
               </p>
 
               {/* Total Price */}
-              <p className="text-black flex items-center justify-center">
+              <p className="text-black flex items-center text-xs sm:text-sm justify-center">
                 ${item.price * cartItems[item._id]}
               </p>
 
@@ -75,7 +75,7 @@ function Cart() {
                   onClick={() => removeFromCart(item._id)}
                   className="cursor-pointer text-black rounded"
                 >
-                  <Trash2 size={20} />
+                  <Trash2  className=" h-4 sm:h-5" />
                 </button>
               </div>
             </div>

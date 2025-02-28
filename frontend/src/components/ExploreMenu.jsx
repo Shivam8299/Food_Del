@@ -1,6 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { menu_list } from "../assets/frontend_assets/assets";
+import "./autoPlay.css"
 function ExploreMenu({ category, setCategory }) {
+  let className = "automove"
+  console.log(category)
+  const [animation, setAnimation] = useState(true)
+  animation?className = "automove":className="";
+
+  useEffect(()=>{
+    category !== "All" ? setAnimation(false):setAnimation(true)
+  },[category])
+  
+
   return (
     <div id='menu' className="pt-8 w-full">
       <div className="md:ml-3">
@@ -14,24 +25,26 @@ function ExploreMenu({ category, setCategory }) {
 
       {/* Scrollable Container */}
       <div
-        className="w-full overflow-x-auto"
+        className={className+"_movingMenu w-full overflow-x-auto "}
         style={{ scrollbarWidth: "none", whiteSpace:'nowrap' }}
       >
-        <div className="flex gap-5 w-max ">
-          {menu_list.map((item, index) => (
+        <div className="flex gap-4 w-max ">
+          {[...menu_list,  ...menu_list, ...menu_list].map((item, index) => (
+            
             <div
             onClick={() =>
               setCategory((prev) => (prev === item.menu_name ? "All" : item.menu_name))
             }
+            
               key={index}
-              className="flex flex-col items-center cursor-pointer"
+              className={`flex flex-col items-center  cursor-pointer`}
             >
               <img
-                className={`${category === item.menu_name ? "border-2 rounded-full p-[2px] border-amber-600" : ""} h-[110px] md:h-[120px] lg:h-36`}
+                className={`${category === item.menu_name ? "border-2 rounded-full  p-[2px] border-amber-600" : ""} h-[91px] md:h-[114px] lg:h-[122.2px] xl:h-[139px]`}
                 src={item.menu_image}
                 alt=""
               />
-              <p className="text-[#747474] mt-3 cursor-pointer">
+              <p className="text-gray-700 mt-3 cursor-pointer">
                 {item.menu_name}
               </p>
             </div>

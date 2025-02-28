@@ -1,0 +1,12 @@
+.automove_movingMenu div{
+    animation: moving 20s linear infinite forwards;
+
+}
+@keyframes moving {
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(-30%);
+    }
+}
